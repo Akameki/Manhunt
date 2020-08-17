@@ -1,0 +1,9 @@
+name: Manhunt
+version: 0.1.0
+authors: [Rit2, Akameki]
+main: me.akameki.manhunt.Driver
+api-version: 1.16
+commands:
+  tracker:
+    description: Gives user a compass that tracks specified player
+    usage: /tracker <player>
