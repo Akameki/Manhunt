@@ -1,5 +1,5 @@
 name: Manhunt
-version: 0.0.3
+version: 0.0.4
 authors: [Rit2, Akameki]
 main: me.akameki.manhunt.Main
 api-version: 1.16
