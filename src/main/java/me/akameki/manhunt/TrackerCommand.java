@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class TrackerCommand implements CommandExecutor {
-    private static Map<Player, Player> map = new HashMap<>();
+    private static final Map<Player, Player> map = new HashMap<>();
 
     public static Player getHunted(Player hunter) {
         return map.get(hunter);

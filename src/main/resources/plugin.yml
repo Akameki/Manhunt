@@ -1,7 +1,7 @@
 name: Manhunt
-version: 0.1.0
+version: 0.0.3
 authors: [Rit2, Akameki]
-main: me.akameki.manhunt.Driver
+main: me.akameki.manhunt.Main
 api-version: 1.16
 commands:
   tracker:

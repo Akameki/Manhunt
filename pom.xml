@@ -4,12 +4,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>akameki.me.compass</groupId>
-    <artifactId>Compass</artifactId>
+    <groupId>me.akameki.manhunt</groupId>
+    <artifactId>Manhunt</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>Compass</name>
+    <name>Manhunt</name>
 
     <properties>
         <java.version>1.8</java.version>
