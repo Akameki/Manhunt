@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public class TrackerCommand implements CommandExecutor {
+public class TrackCommand implements CommandExecutor {
     private static final Map<UUID, UUID> huntersMap = new HashMap<>();
 
     public static Player getHunted(Player hunter) {
@@ -24,7 +24,7 @@ public class TrackerCommand implements CommandExecutor {
     }
 
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        if (cmd.getName().equalsIgnoreCase("tracker")) {
+        if (cmd.getName().equalsIgnoreCase("track")) {
             if (args.length != 1) {
                 return false;
             }

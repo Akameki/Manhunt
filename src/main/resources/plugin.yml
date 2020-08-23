@@ -1,11 +1,11 @@
 name: Manhunt
-version: 0.2.0
+version: 0.2.1
 description: Manhunt, track players with a compass!
 authors: [Rit2, Akameki]
 main: me.akameki.manhunt.Main
 api-version: 1.16
 commands:
-  tracker:
-    aliases: [track]
+  track:
+    aliases: [tracker]
     description: Gives yourself a compass that tracks specified player
     usage: Syntax error! /<command> <player>

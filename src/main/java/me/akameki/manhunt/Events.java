@@ -23,7 +23,7 @@ public class Events implements Listener {
     public void onRightClickCompass(PlayerInteractEvent event) {
         if (event.getMaterial()==Material.COMPASS && (event.getAction()==Action.RIGHT_CLICK_AIR||event.getAction()==Action.RIGHT_CLICK_BLOCK)) {
             Player hunter = event.getPlayer();
-            Player hunted = TrackerCommand.getHunted(hunter);
+            Player hunted = TrackCommand.getHunted(hunter);
             if (hunted == null) {
                 hunter.sendMessage(ChatColor.RED + "Did you use /track?");
             } else if (!hunted.isOnline()) {
