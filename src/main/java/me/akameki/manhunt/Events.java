@@ -25,24 +25,22 @@ public class Events implements Listener {
             Player hunter = event.getPlayer();
             Player hunted = TrackerCommand.getHunted(hunter);
             if (hunted == null) {
-                hunter.sendMessage(ChatColor.RED + "Did you use /tracker?");
-                return;
-            }
-            if (!hunted.isOnline()) {
-                hunter.sendMessage(ChatColor.YELLOW + hunted.getName() + " is offline");
+                hunter.sendMessage(ChatColor.RED + "Did you use /track?");
+            } else if (!hunted.isOnline()) {
+                hunter.sendMessage(ChatColor.RED + hunted.getName() + " is offline");
+            } else if (hunter.getWorld().getEnvironment() != hunted.getWorld().getEnvironment()) {
+                hunter.sendMessage(ChatColor.GRAY + hunted.getName() + " is in a different dimension!");
             } else {
                 Location location = hunted.getLocation();
                 hunter.setCompassTarget(location);
-                if (hunter.getWorld().getEnvironment() != hunted.getWorld().getEnvironment()) return;
                 ItemStack compass = new ItemStack(Material.COMPASS);
+                CompassMeta meta = (CompassMeta) compass.getItemMeta();
+                meta.setDisplayName(hunted.getName()+" Tracker");
                 if (hunted.getWorld().getEnvironment() == World.Environment.NETHER || hunted.getWorld().getEnvironment() == World.Environment.THE_END) {
-                    CompassMeta meta = (CompassMeta) compass.getItemMeta();
                     meta.setLodestone(location);
                     meta.setLodestoneTracked(false);
-                    compass.setItemMeta(meta);
                 }
-
-                //replace compass
+                compass.setItemMeta(meta);
                 if (hunter.getInventory().getItemInMainHand().getType() == Material.COMPASS) {
                     hunter.getInventory().setItemInMainHand(compass);
                 } else {
