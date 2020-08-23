@@ -23,35 +23,24 @@ public class Events implements Listener {
     public void onRightClickCompass(PlayerInteractEvent event) {
         if (event.getMaterial()==Material.COMPASS && (event.getAction()==Action.RIGHT_CLICK_AIR||event.getAction()==Action.RIGHT_CLICK_BLOCK)) {
             Player hunter = event.getPlayer();
-            hunter.sendMessage(hunter.toString() + "is you");
-            if (TrackerCommand.huntersMap.isEmpty()) hunter.sendMessage("map empty!!!");
-            for (Player h : TrackerCommand.huntersMap.keySet()) {
-                hunter.sendMessage(h.toString() + "key");
-                hunter.sendMessage(TrackerCommand.getHunted(h).toString() + "hunted from key");
-            }
             Player hunted = TrackerCommand.getHunted(hunter);
             if (hunted == null) {
-                hunter.sendMessage(ChatColor.RED + "Did you use /tracker?");
-                return;
-            }
-            if (!hunted.isOnline()) {
+                hunter.sendMessage(ChatColor.RED + "Did you use /track?");
+            } else if (!hunted.isOnline()) {
                 hunter.sendMessage(ChatColor.RED + hunted.getName() + " is offline");
+            } else if (hunter.getWorld().getEnvironment() != hunted.getWorld().getEnvironment()) {
+                hunter.sendMessage(ChatColor.GRAY + hunted.getName() + " is in a different dimension!");
             } else {
                 Location location = hunted.getLocation();
                 hunter.setCompassTarget(location);
-                if (hunter.getWorld().getEnvironment() != hunted.getWorld().getEnvironment()) {
-                    hunter.sendMessage(ChatColor.DARK_GREEN + hunted.getName() + "is in a different dimension!");
-                    return;
-                }
                 ItemStack compass = new ItemStack(Material.COMPASS);
+                CompassMeta meta = (CompassMeta) compass.getItemMeta();
+                meta.setDisplayName(hunted.getName()+" Tracker");
                 if (hunted.getWorld().getEnvironment() == World.Environment.NETHER || hunted.getWorld().getEnvironment() == World.Environment.THE_END) {
-                    CompassMeta meta = (CompassMeta) compass.getItemMeta();
                     meta.setLodestone(location);
                     meta.setLodestoneTracked(false);
-                    compass.setItemMeta(meta);
                 }
-
-                //replace compass
+                compass.setItemMeta(meta);
                 if (hunter.getInventory().getItemInMainHand().getType() == Material.COMPASS) {
                     hunter.getInventory().setItemInMainHand(compass);
                 } else {
