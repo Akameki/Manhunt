@@ -2,6 +2,7 @@ package me.akameki.manhunt;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -13,10 +14,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class TrackerCommand implements CommandExecutor {
-    private static final Map<Player, Player> map = new HashMap<>();
+    public static final Map<Player, Player> huntersMap = new HashMap<>(); ///////////change
+    private static final Map<Player, Location> locationMap = new HashMap<>();
 
     public static Player getHunted(Player hunter) {
-        return map.get(hunter);
+        return huntersMap.get(hunter);
     }
 
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
@@ -42,7 +44,7 @@ public class TrackerCommand implements CommandExecutor {
 
             //give player compass if target online
             if (target.isOnline()) {
-                map.put(player, target);
+                huntersMap.put(player, target);
                 player.getInventory().addItem(new ItemStack(Material.COMPASS));
                 return true;
             } else {
