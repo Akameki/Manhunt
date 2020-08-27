@@ -8,7 +8,9 @@ public class Main extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        this.getCommand("tracker").setExecutor(new TrackCommand());
+        TrackCommand track = new TrackCommand();
+        this.getCommand("tracker").setExecutor(track);
+        this.getCommand("tracker").setTabCompleter(track);
         this.getServer().getPluginManager().registerEvents(new Events(), this);
     }
 
